@@ -20,9 +20,6 @@ echo "LANG=da_DK.UTF-8" > /etc/locale.conf
 #KEYMAP=de-latin1
 echo "KEYMAP=dk" > /etc/vconsole.conf
 
-#set xkeymap
-setxkbmap dk
-
 #set hostname > 
 echo "archlinux" > /etc/hostname
 
@@ -52,6 +49,9 @@ grub-mkconfig -o /boot/grub/grub.cfg
 
 #config mkinitcpio -P
 mkinitcpio -P
+
+#set xkeymap
+setxkbmap dk
 
 
 #exit
