@@ -24,4 +24,4 @@ After the script is done are you in the arch-chainroot run this code in the shel
 
 Type at password for root accound and after the script is done, exit and reboot ...... 
 
-enjoy a Arch linux danish enviroment with ligdm greeter and cinnemon, nemo, gnome-terminal. Edit the packagefile in the project for you own packages.
+enjoy a Arch linux danish enviroment with ligthdm greeter and cinnemon, nemo, gnome-terminal. Edit the packagefile in the project for you own packages.
