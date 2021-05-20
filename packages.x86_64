@@ -98,11 +98,6 @@ libtool
 libva-mesa-driver
 libva-vdpau-driver
 lightdm-gtk-greeter
-linux
-linux-atm
-linux-firmware
-linux-headers
-livecd-sounds
 lsof
 lsscsi
 lvm2
