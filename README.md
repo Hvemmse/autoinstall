@@ -14,7 +14,7 @@ to install git and update pacman mirrorlist
 
 <code>git clone https://github.com/Hvemmse/archinstalldanish</code>
 
-To get the 3 files in the project.
+To get the files from the project.
 
 <code>cd archinstalldanish</code>
 <code>sh starthere</code>
