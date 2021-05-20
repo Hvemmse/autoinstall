@@ -64,13 +64,13 @@ else
 bios
 fi
 
+sudo cp root/archlinuxdanish/packages.x86_64 /mnt
+sudo cp root/archlinuxdanish/install /mnt
 sudo pacstrap /mnt base linux linux-firmware nemo 
-sudo cp ~/archlinuxdanish/packages.x86_64 /mnt
-sudo cp ~/archlinuxdanish/install /mnt
+
 sudo pacman -Sy
 #gen fstab
 sudo genfstab -L /mnt >> /mnt/etc/fstab
 
 sudo arch-chroot /mnt
-#opret root password
-passwd
+
