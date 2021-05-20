@@ -1,0 +1,75 @@
+
+bios () {
+
+echo Intast drev som /dev/sdx dvs a for x eller b for x
+
+read part
+ 
+
+#create partition
+sudo sgdisk -og $1 ${part} 
+sudo sgdisk -n 1:2048:65535 -c 1:"BIOS Boot Partition" -t 1:ef02 $1 ${part} 
+sudo sgdisk -n 2:65536:1114111 -c 2:"Linux /boot" -t 2:8300 $1 ${part} 
+sudo sgdisk -n 3:1114112:9353215 -c 3:"Linux Swap" -t 3:8200 $1 ${part}
+ENDSECTOR=`sudo sgdisk -E $1`
+sudo sgdisk -n 4:9353216:$ENDSECTOR -c 4:"Linux " -t 4:8300 $1 ${part} 
+sudo sgdisk -p $1 ${part} 
+
+#format partitions
+
+sudo mkfs.ext4 -F ${part}2
+sudo mkswap ${part}3
+sudo mkfs.ext4 -F ${part}4
+ 
+#mount partitions
+sudo mount ${part}4 /mnt
+sudo swapon ${part}3
+sudo mkdir /mnt/boot
+sudo mount ${part}2 /mnt/boot
+}
+
+
+
+efi () {
+echo Intast drev som /dev/sdx dvs a for x eller b for x
+
+read part
+
+sudo sgdisk -og $1 ${part}
+sudo sgdisk -n 1:2048:4095 -c 1:"BIOS Boot Partition" -t 1:ef02 $1 ${part}
+sudo sgdisk -n 2:4096:413695 -c 2:"EFI System Partition" -t 2:ef00 $1 ${part}
+sudo sgdisk -n 3:413696:823295 -c 3:"Linux /boot" -t 3:8300 $1 ${part}
+ENDSECTOR=`sgdisk -E $1`
+sudo sgdisk -n 4:823296:$ENDSECTOR -c 4:"Linux" -t 4:8300 $1 ${part}
+sudo sgdisk -p $1 ${part}
+
+#format partitions
+sudo mkfs.fat -F32 ${part}2
+sudo mkfs.ext4 -F ${part}3
+sudo mkfs.ext4 -F ${part}4
+
+#mount partitions
+sudo mount ${part}4 /mnt
+sudo mkdir /mnt/boot
+sudo mkdir /mnt/boot/efi
+sudo mount ${part}2 /mnt/boot/efi
+}
+
+
+if [ -d "/sys/firmware/efi/efivars" ] 
+then
+ efi
+    
+else
+bios
+fi
+
+sudo pacstrap /mnt base linux linux-firmware nemo 
+sudo cp /home/live/packages.x86_64 /mnt
+sudo pacman -Sy
+#gen fstab
+sudo genfstab -L /mnt >> /mnt/etc/fstab
+
+sudo arch-chroot /mnt
+#opret root password
+passwd

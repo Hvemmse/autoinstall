@@ -1,0 +1,55 @@
+#opret root password
+passwd
+
+
+#set localtime
+ln -sf /usr/share/zoneinfo/Europe/Copenhagen /etc/localtime
+
+#locale gen
+
+echo "da_DK.UTF-8 UTF-8" >> /etc/locale.gen
+echo "da_DK ISO-8859-1" >> /etc/locale.gen
+
+# run locale-gen
+locale-gen
+
+#set language in locale.conf
+echo "LANG=da_DK.UTF-8" > /etc/locale.conf
+
+#set kermap 
+#KEYMAP=de-latin1
+echo "KEYMAP=dk" > /etc/vconsole.conf
+
+#set hostname > 
+echo "archlinux" > /etc/hostname
+
+#create Hostfile
+echo "127.0.0.1	localhost" > /etc/hosts
+echo "::1		localhost" >> /etc/hosts
+echo "127.0.1.1	archlinux.localdomain	archlinux" >> /etc/hosts
+
+#install grub
+grub-install --target=i386-pc /dev/sda
+#mkgrub-config
+grub-mkconfig -o /boot/grub/grub.cfg
+
+# install pakker
+pacman -S - < packages.x86_64 
+
+#enable services
+systemctl enable lightdm
+systemctl enable NetworkManager
+systemctl enable cups
+
+#install grub
+grub-install --target=i386-pc /dev/sda
+
+#mkgrub-config
+grub-mkconfig -o /boot/grub/grub.cfg
+
+#config mkinitcpio -P
+mkinitcpio -P
+
+
+#exit
+exit
