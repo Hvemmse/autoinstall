@@ -65,7 +65,7 @@ bios
 fi
 
 sudo pacstrap /mnt base linux linux-firmware nemo 
-sudo cp /home/live/packages.x86_64 /mnt
+sudo cp ~/archlinuxdanish/packages.x86_64 /mnt
 sudo pacman -Sy
 #gen fstab
 sudo genfstab -L /mnt >> /mnt/etc/fstab
