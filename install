@@ -16,9 +16,12 @@ locale-gen
 #set language in locale.conf
 echo "LANG=da_DK.UTF-8" > /etc/locale.conf
 
-#set kermap 
+#set keymap 
 #KEYMAP=de-latin1
 echo "KEYMAP=dk" > /etc/vconsole.conf
+
+#set xkeymap
+setxkbmap dk
 
 #set hostname > 
 echo "archlinux" > /etc/hostname
