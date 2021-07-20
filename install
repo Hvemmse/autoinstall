@@ -77,9 +77,6 @@ systemctl enable lightdm
 systemctl enable NetworkManager
 systemctl enable cups
 
-#install grub
-grub-install --target=i386-pc /dev/sda
-
 #mkgrub-config
 grub-mkconfig -o /boot/grub/grub.cfg
 
