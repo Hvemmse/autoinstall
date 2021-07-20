@@ -1,5 +1,41 @@
+
+
+
+
+
+
 #opret root password
 passwd
+
+bios () {
+
+echo Intast drev som /dev/sdx dvs a for x eller b for x
+
+read part
+
+#install grub
+grub-install --target=i386-pc ${part}
+
+}
+
+
+
+efi () {
+
+grub-install --target=x86_64-efi --efi-directory=esp --bootloader-id=GRUB
+
+}
+
+
+if [ -d "/sys/firmware/efi/efivars" ] 
+then
+ efi
+    
+else
+bios
+fi
+
+
 
 
 #set localtime
