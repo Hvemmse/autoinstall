@@ -56,6 +56,12 @@ echo "LANG=da_DK.UTF-8" > /etc/locale.conf
 #KEYMAP=de-latin1
 echo "KEYMAP=dk" > /etc/vconsole.conf
 
+
+# install pakker
+pacman -S - < packages.x86_64 
+
+
+
 #set hostname > 
 echo "archlinux" > /etc/hostname
 
@@ -68,9 +74,6 @@ echo "127.0.1.1	archlinux.localdomain	archlinux" >> /etc/hosts
 grub-install --target=i386-pc /dev/sda
 #mkgrub-config
 grub-mkconfig -o /boot/grub/grub.cfg
-
-# install pakker
-pacman -S - < packages.x86_64 
 
 #enable services
 systemctl enable lightdm
