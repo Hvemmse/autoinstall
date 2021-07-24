@@ -160,7 +160,6 @@ system-config-printer
 systemd-resolvconf
 tcpdump
 terminus-font
-termite-terminfo
 testdisk
 texinfo
 tmux
