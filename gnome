@@ -7,7 +7,7 @@ read svar
 
 if [ $svar == 'j' ]
 then
-sudo pacman -S xorg xorg-server gnome firefox vlc gnome-tweaks nano
+sudo pacman -S xorg xorg-server gnome gnome-extra vivaldi vlc gnome-tweaks nano
 else
 #vil du test GDM
 echo "Vil du starte GDM? (j/n)"
