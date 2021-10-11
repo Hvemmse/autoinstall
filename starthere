@@ -1,7 +1,7 @@
 
 bios () {
 
-echo Intast drev som /dev/sdx dvs a for x eller b for x
+echo Indtast drev som /dev/sdx dvs a for x eller b for x
 
 read part
  
