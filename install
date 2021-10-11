@@ -58,8 +58,8 @@ echo "KEYMAP=dk" > /etc/vconsole.conf
 
 
 # install pakker
-pacman -S - < packages.x86_64 
-
+# pacman -S - < packages.x86_64 
+pacman -S networkmanager
 
 
 #set hostname > 
@@ -70,10 +70,10 @@ echo "127.0.0.1	localhost" > /etc/hosts
 echo "::1		localhost" >> /etc/hosts
 echo "127.0.1.1	archlinux.localdomain	archlinux" >> /etc/hosts
 
-#install grub
-grub-install --target=i386-pc /dev/sda
-#mkgrub-config
-grub-mkconfig -o /boot/grub/grub.cfg
+# install grub
+# grub-install --target=i386-pc /dev/sda
+# mkgrub-config
+# grub-mkconfig -o /boot/grub/grub.cfg
 
 #enable services
 systemctl enable lightdm
