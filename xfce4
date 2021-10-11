@@ -7,7 +7,7 @@ read svar
 
 if [ $svar == 'j' ]
 then
-sudo pacman -S xorg xorg-server xterm lightdm-gtk-greeter lightdm xfce4 xfce4-goodies vlc nano firefox
+sudo pacman -S xorg xorg-server xterm lightdm-gtk-greeter pavucontrol lightdm xfce4 xfce4-goodies vlc nano firefox
 else
 #vil du teste Lightdm
 echo "Vil du starte lightdm? (j/n)"
