@@ -2,7 +2,7 @@
 
 sudo pacman -Syu
 
-echo "Vil du installere Gnome Desktop? (j/n)"
+echo "Vil du installere xfce Desktop? (j/n)"
 read svar
 
 if [ $svar == 'j' ]
@@ -10,11 +10,11 @@ then
 sudo pacman -S xorg xorg-server xterm lightdm xfce4 xfce4-goodies vlc nano firefox
 else
 #vil du test GDM
-echo "Vil du starte GDM? (j/n)"
+echo "Vil du starte lightdm? (j/n)"
 read var
 if [ $var == 'j' ]
 then
-  sudo systemctl start gdm
+  sudo systemctl start lightdm
 
 fi
 fi
