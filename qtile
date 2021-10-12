@@ -1,3 +1,5 @@
 sudo pacman -S - < pkglist
 sudo systemctl enable slim 
+cp /etc/X11/xinit/xinitrc ~/.xinitrc
+
 locale-gen

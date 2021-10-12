@@ -12,7 +12,7 @@ else
 #vil du teste Lightdm
 echo "Vil du starte lightdm? (j/n)"
 read var
-sudo systemctl enable lifhtdm
+sudo systemctl enable lightdm
 if [ $var == 'j' ]
 then
   sudo systemctl start lightdm
