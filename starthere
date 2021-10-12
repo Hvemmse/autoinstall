@@ -64,9 +64,9 @@ else
 bios
 fi
 
-sudo cp /root/archinstalldanish/packages.x86_64 /mnt
-sudo cp /root/archinstalldanish/install /mnt
-sudo pacstrap /mnt base linux linux-firmware nemo 
+sudo cp /root/archinstalldanish/* /mnt
+# sudo cp /root/archinstalldanish/install /mnt
+sudo pacstrap /mnt base linux linux-firmware nemo grub nano
 
 sudo pacman -Sy
 #gen fstab

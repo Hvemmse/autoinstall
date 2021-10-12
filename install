@@ -54,7 +54,7 @@ echo "setxkbmap dk" >> /etc/vconsole.conf
 
 # install pakker
 # pacman -S - < packages.x86_64 
-pacman -S networkmanager grub pulseaudio pavucontrol sudo
+pacman -S networkmanager pulseaudio pavucontrol sudo
 
 
 #set hostname > 
