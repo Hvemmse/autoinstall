@@ -1,9 +1,3 @@
-
-
-
-
-
-
 #opret root password
 passwd
 
@@ -55,11 +49,12 @@ echo "LANG=da_DK.UTF-8" > /etc/locale.conf
 #set keymap 
 #KEYMAP=de-latin1
 echo "KEYMAP=dk" > /etc/vconsole.conf
+echo "setxkbmap dk" >> /etc/vconsole.conf
 
 
 # install pakker
 # pacman -S - < packages.x86_64 
-pacman -S networkmanager
+pacman -S networkmanager grub pulseaudio pavucontrol sudo
 
 
 #set hostname > 
@@ -78,7 +73,7 @@ echo "127.0.1.1	archlinux.localdomain	archlinux" >> /etc/hosts
 #enable services
 systemctl enable lightdm
 systemctl enable NetworkManager
-systemctl enable cups
+# systemctl enable cups
 
 #mkgrub-config
 grub-mkconfig -o /boot/grub/grub.cfg
@@ -86,9 +81,13 @@ grub-mkconfig -o /boot/grub/grub.cfg
 #config mkinitcpio -P
 mkinitcpio -P
 
-#set xkeymap
-setxkbmap dk
+# set username
+echo Indtast brugernavn til bruger
+read user
 
+useradd -m -G wheel -s /bin/bash ${user}
+
+passwd ${user}
 
 #exit
 exit
