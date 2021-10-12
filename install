@@ -58,20 +58,20 @@ pacman -S networkmanager pulseaudio pavucontrol sudo
 
 
 #set hostname > 
-echo "archlinux" > /etc/hostname
+echo indstast Hostname?
+read hostname
+
+echo ${hostname} > /etc/hostname
+
 
 #create Hostfile
 echo "127.0.0.1	localhost" > /etc/hosts
 echo "::1		localhost" >> /etc/hosts
 echo "127.0.1.1	archlinux.localdomain	archlinux" >> /etc/hosts
 
-# install grub
-# grub-install --target=i386-pc /dev/sda
-# mkgrub-config
-# grub-mkconfig -o /boot/grub/grub.cfg
 
-#enable services
-systemctl enable lightdm
+# enable services
+# systemctl enable lightdm
 systemctl enable NetworkManager
 # systemctl enable cups
 

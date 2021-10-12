@@ -12,6 +12,9 @@ else
 #vil du test GDM
 echo "Vil du starte GDM? (j/n)"
 read var
+
+sudo systemctl enable gdm
+
 if [ $var == 'j' ]
 then
   sudo systemctl start gdm

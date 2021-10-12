@@ -1,1 +1,3 @@
-pacman -S - < pakages.x86_64
+pacman -S - < packages.x86_64
+systemctl enable lightdm
+locale-gen
