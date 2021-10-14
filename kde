@@ -1,3 +1,3 @@
-sudo pacman -S plasma kde-appliccations sddm
+sudo pacman -S plasma kde-applications sddm
 systemctl enable sddm
 
