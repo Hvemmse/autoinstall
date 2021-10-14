@@ -17,14 +17,16 @@ to install git and update pacman mirrorlist
 To get the files from the project.
 
 <code>cd archinstalldanish</code>
-<code>sh starthere</code>
+<code>sh ./starthere</code>
 After the script is done are you in the arch-chainroot run this code in the shell
 
-<code>sh install</code>
+<code>sh ./install</code>
 
 Type at password for root accound and after the script is done, exit and reboot ...... 
 
-enjoy a Arch linux danish enviroment with ligthdm greeter and cinnemon, nemo, gnome-terminal. Edit the packagefile in the project for you own packages.
+enjoy a Arch linux danish enviroment with cinnamon , Xfce4 , kde, gnome, qtile.
+
+<code>sh ./gnome</code> if you want gnome de
 
 Download arch isofrom here 
 
