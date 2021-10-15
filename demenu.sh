@@ -9,22 +9,27 @@ do
         "Cinnamon")
             echo "Cinnamon"
             ./cinnamon
+            break
             ;;
         "Kde")
             echo "Kde"
             ./kde
+            break
             ;;
         "Gnome")
             echo "$opt"
             ./gnome
+            break
             ;;
         "Qtile")
             echo "$opt"
             ./qtile
+            break
             ;;
         "Xfce4")
             echo "xfce"
-            ./cfxe4
+            ./xfce4
+            break
             ;;       
         "Afslut")
             break
