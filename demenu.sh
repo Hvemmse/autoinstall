@@ -28,7 +28,7 @@ do
             ;;
         "Xfce4")
             echo "xfce"
-            ./cfxe4
+            ./xfce4
 			break
             ;;       
         "Afslut")
