@@ -10,7 +10,8 @@ nitrogen
 openssh
 qtile
 reflector
-slim
+lighdm
+lightdm-greeter
 sudo
 terminator
 xf86-video-vesa

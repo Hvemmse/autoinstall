@@ -64,7 +64,6 @@ else
 bios
 fi
 
-chmod +x *
 sudo cp /root/archinstalldanish/* /mnt
 # sudo cp /root/archinstalldanish/install /mnt
 sudo pacstrap /mnt base linux linux-firmware nemo grub nano

@@ -1,5 +1,5 @@
 sudo pacman -S - < pkglist
-sudo systemctl enable slim 
+sudo systemctl enable lightdm 
 cp /etc/X11/xinit/xinitrc ~/.xinitrc
 
 locale-gen
