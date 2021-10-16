@@ -10,7 +10,7 @@ nitrogen
 openssh
 qtile
 reflector
-lighdm
+lightdm
 lightdm-greeter
 sudo
 terminator

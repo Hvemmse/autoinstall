@@ -1,4 +1,6 @@
 #opret root password
+echo "Tast adgangskode til ROOT."
+
 passwd
 
 bios () {
@@ -88,6 +90,8 @@ read user
 useradd -m -G wheel -s /bin/bash ${user}
 
 passwd ${user}
+
+
 
 #exit
 exit
