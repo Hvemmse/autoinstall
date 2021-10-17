@@ -1,5 +1,5 @@
 #!/bin/bash
-# Bash Menu Script Example
+# 
 
 PS3='Vælg Desktop enviroment: '
 options=("Cinnamon" "Kde" "Gnome" "Qtile" "Xfce4" "Afslut")
