@@ -1,5 +1,5 @@
 #opret root password
-echo "Tast adgangskode til ROOT."
+echo "Vælg din adgangskode til ROOT."
 
 passwd
 
