@@ -27,7 +27,7 @@ else
 FILE=git
  echo
  echo $FILE
-	sudo pacman -S $FILE
+	sudo pacman -Sy $FILE
 	git clone $REPO
 	
 fi
