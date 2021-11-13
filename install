@@ -53,14 +53,17 @@ echo "LANG=da_DK.UTF-8" > /etc/locale.conf
 echo "KEYMAP=dk" > /etc/vconsole.conf
 echo "setxkbmap dk" >> /etc/vconsole.conf
 
+# enable parralel download in pacman.conf
+echo "ParallelDownloads = 5" >>  /etc/pacman.conf
+
 
 # install pakker
-# pacman -S - < packages.x86_64 
+pacman -Sy 
 pacman -S networkmanager pulseaudio pavucontrol sudo
 
 
 #set hostname > 
-echo indstast Hostname?
+echo Skriv Hostname?
 read hostname
 
 echo ${hostname} > /etc/hostname
