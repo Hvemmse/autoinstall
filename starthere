@@ -71,7 +71,7 @@ fi
 
 sudo cp /root/archinstalldanish/* /mnt
 # sudo cp /root/archinstalldanish/install /mnt
-sudo pacstrap /mnt base linux linux-firmware nemo grub nano
+sudo pacstrap /mnt base linux linux-firmware nemo grub nano reflector
 
 sudo pacman -Sy
 #gen fstab
