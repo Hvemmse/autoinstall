@@ -53,9 +53,11 @@ echo "LANG=da_DK.UTF-8" > /etc/locale.conf
 echo "KEYMAP=dk" > /etc/vconsole.conf
 echo "setxkbmap dk" >> /etc/vconsole.conf
 
+# set location in reflector
+reflector --protocol https --country 'Denmark,Germany'
+
 # enable parralel download in pacman.conf
 echo "ParallelDownloads = 5" >>  /etc/pacman.conf
-
 
 # install pakker
 pacman -Sy 
