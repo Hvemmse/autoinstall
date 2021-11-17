@@ -35,7 +35,12 @@ fi
 
 
 #set localtime
-ln -sf /usr/share/zoneinfo/Europe/Copenhagen /etc/localtime
+
+echo "Skriv din tidszone eks. Europe/Copenhagen (Denmark) "
+
+read timez
+
+ln -sf /usr/share/zoneinfo/$timez /etc/localtime
 
 #locale gen
 
