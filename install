@@ -4,7 +4,7 @@ echo "Vælg din adgangskode til ROOT."
 passwd
 
 bios () {
-
+lsblk -d
 echo Indtast drev som /dev/sdx dvs a for x eller b for x
 
 read part
@@ -17,6 +17,7 @@ grub-install --target=i386-pc ${part}
 
 
 efi () {
+lsblk -d
 pacman -S efibootmgr
 grub-install --target=x86_64-efi --efi-directory=boot/efi --bootloader-id=GRUB
 
@@ -32,6 +33,7 @@ bios
 fi
 
 #set localtime
+
 
 echo "Hvilken by er Hovedstaden?"
 read town
@@ -65,7 +67,7 @@ reflector --protocol https --country 'Denmark,Germany'
 
 # enable parralel download in pacman.conf
 sed -i 's/#ParallelDownloads/ParallelDownloads/g' /etc/pacman.conf
-#echo "ParallelDownloads = 5" >>  /etc/pacman.conf
+
 
 # install pakker
 pacman -Sy 
@@ -104,7 +106,6 @@ useradd -m -G wheel -s /bin/bash ${user}
 
 passwd ${user}
 
-
-
+sed -i 's/# %wheels/%wheels/g' /etc/sudoers
 #exit
 exit
