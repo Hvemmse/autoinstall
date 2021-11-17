@@ -46,7 +46,7 @@ ln -sf /usr/share/zoneinfo/$timez /etc/localtime
 
 #locale gen
 
-echo "da_DK.utf-8 UTF-8" >> /etc/locale.gen
+echo "da_DK.UTF-8 UTF-8" >> /etc/locale.gen
 echo "da_DK ISO-8859-1" >> /etc/locale.gen
 
 # run locale-gen
