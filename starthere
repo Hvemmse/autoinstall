@@ -69,6 +69,9 @@ else
 bios
 fi
 
+#enable paralelldownloads in pacman.conf
+sed -i 's/#ParallelDownloads/ParallelDownloads/g' /etc/pacman.conf
+
 sudo cp /root/archinstalldanish/* /mnt
 # sudo cp /root/archinstalldanish/install /mnt
 sudo pacstrap /mnt base linux linux-firmware nemo grub nano reflector
