@@ -31,10 +31,12 @@ else
 bios
 fi
 
-
-
-
 #set localtime
+
+echo "Hvilken by er Hovedstaden?"
+read town
+
+timedatectl list-timezones | grep $town
 
 echo "Skriv din tidszone eks. Europe/Copenhagen (Denmark) "
 
@@ -62,7 +64,8 @@ echo "setxkbmap dk" >> /etc/vconsole.conf
 reflector --protocol https --country 'Denmark,Germany'
 
 # enable parralel download in pacman.conf
-echo "ParallelDownloads = 5" >>  /etc/pacman.conf
+sed -i 's/#ParallelDownloads = 5/ParallelDownloads = 5' /etc/pacman.conf
+#echo "ParallelDownloads = 5" >>  /etc/pacman.conf
 
 # install pakker
 pacman -Sy 
