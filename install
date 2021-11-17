@@ -46,7 +46,7 @@ ln -sf /usr/share/zoneinfo/$timez /etc/localtime
 
 #locale gen
 
-echo "da_DK.UTF-8 UTF-8" >> /etc/locale.gen
+echo "da_DK.utf-8 UTF-8" >> /etc/locale.gen
 echo "da_DK ISO-8859-1" >> /etc/locale.gen
 
 # run locale-gen
@@ -64,7 +64,7 @@ echo "setxkbmap dk" >> /etc/vconsole.conf
 reflector --protocol https --country 'Denmark,Germany'
 
 # enable parralel download in pacman.conf
-sed -i 's/#ParallelDownloads = 5/ParallelDownloads = 5' /etc/pacman.conf
+sed -i 's/#ParallelDownloads/ParallelDownloads/g' /etc/pacman.conf
 #echo "ParallelDownloads = 5" >>  /etc/pacman.conf
 
 # install pakker
