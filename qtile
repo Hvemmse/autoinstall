@@ -4,6 +4,6 @@ cp /etc/X11/xinit/xinitrc ~/.xinitrc
 
 locale-gen
 
-echo "setxkbmap dk" >> /home/$USER/.bashrc
+echo "setxkbmap us" >> /home/$USER/.bashrc
 echo "xrandr -s 1920x1080" >> /home/$USER/.bashrc
 echo "nitrogen --restore" >> /home/$USER/.bashrc
