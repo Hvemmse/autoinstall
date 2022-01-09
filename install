@@ -1,5 +1,5 @@
 #Choice root password
-echo "Coice root Password."
+echo "Choice root Password."
 
 passwd
 
@@ -105,6 +105,6 @@ useradd -m -G wheel -s /bin/bash ${user}
 
 passwd ${user}
 
-sed -i 's/# %wheels/%wheels/g' /etc/sudoers
+sed -i 's/# %wheel/%wheel/g' /etc/sudoers
 #exit
 exit
