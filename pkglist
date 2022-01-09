@@ -11,7 +11,7 @@ openssh
 qtile
 reflector
 lightdm
-lightdm-greeter
+lightdm-gtk-greeter
 sudo
 terminator
 xf86-video-vesa
