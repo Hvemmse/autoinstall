@@ -3,7 +3,7 @@ bios () {
 clear
 lsblk -d
 
-echo Indtast drev som /dev/sdx dvs a for x eller b for x
+echo enter the driveletter /dev/sdx as a for x or b for x
 
 read part
  
@@ -36,7 +36,7 @@ efi () {
 clear 
 lsblk -d
 
-echo Intast drev som /dev/sdx dvs a for x eller b for x
+echo enter the driveletter /dev/sdx as a for x or b for x
 
 read part
 
@@ -72,8 +72,8 @@ fi
 #enable paralelldownloads in pacman.conf
 sed -i 's/#ParallelDownloads/ParallelDownloads/g' /etc/pacman.conf
 
-sudo cp /root/archinstalldanish/* /mnt
-# sudo cp /root/archinstalldanish/install /mnt
+sudo cp /root/autoinstall/* /mnt
+# sudo cp /root/autoinstall/install /mnt
 sudo pacstrap /mnt base linux linux-firmware nemo grub nano reflector
 
 sudo pacman -Sy
