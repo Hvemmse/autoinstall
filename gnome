@@ -8,6 +8,7 @@ read svar
 if [ $svar == 'y' ]
 then
 sudo pacman -S xorg xorg-server gnome gnome-extra vivaldi vlc gnome-tweaks nano
+sudo systemctl enable gdm
 else
 #vil du test GDM
 echo "Would you start GDM? (y/n)"
