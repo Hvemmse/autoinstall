@@ -1,28 +1,28 @@
 #! /bin/bash
 
-# Test.sh for validering om et pkg er installeret, hvis ikke så installer den.
+# Testing if Git is installed, if not download and install it.
 
-DIR=~/archinstalldanish
+DIR=~/autoinstall
 if [ ! -d "$DIR" ]; then
 	echo
-	echo "Henter github script."
+	echo "Downloading git script."
 else 
 	echo
-	echo "Skript eksisterer.. slet den lokale mappe $DIR"
+	echo "Skript existing.. delete the loacal dir $DIR"
 	exit
 fi
 echo
-echo "Tjekker om Git er installeret."
+echo "Searching for git"
 FILE=/usr/bin/git
 REPO=https://github.com/Hvemmse/archinstalldanish
 if [ -f "$FILE" ]; then
     echo
-    echo "$FILE .. fundet"
+    echo "$FILE .. Found"
     git clone $REPO
    
 else 
     echo
-    echo "$FILE Existerer ikke, installerer den nu ...."
+    echo "$FILE is not found, installing it now ...."
 
 FILE=git
  echo
