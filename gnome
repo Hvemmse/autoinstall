@@ -2,20 +2,20 @@
 
 sudo pacman -Syu
 
-echo "Vil du installere Gnome Desktop? (j/n)"
+echo "Install Gnome Desktop? (y/n)"
 read svar
 
-if [ $svar == 'j' ]
+if [ $svar == 'y' ]
 then
 sudo pacman -S xorg xorg-server gnome gnome-extra vivaldi vlc gnome-tweaks nano
 else
 #vil du test GDM
-echo "Vil du starte GDM? (j/n)"
+echo "Would you start GDM? (y/n)"
 read var
 
 sudo systemctl enable gdm
 
-if [ $var == 'j' ]
+if [ $var == 'y' ]
 then
   sudo systemctl start gdm
 
