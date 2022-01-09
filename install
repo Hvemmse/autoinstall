@@ -1,11 +1,11 @@
-#opret root password
-echo "Vælg din adgangskode til ROOT."
+#Choice root password
+echo "Coice root Password."
 
 passwd
 
 bios () {
 lsblk -d
-echo Indtast drev som /dev/sdx dvs a for x eller b for x
+echo Enter driveletter /dev/sdx as a for x or b for x
 
 read part
 
@@ -35,12 +35,12 @@ fi
 #set localtime
 
 
-echo "Hvilken by er Hovedstaden?"
+echo "Enter your timezone as a town?"
 read town
 
 timedatectl list-timezones | grep $town
 
-echo "Skriv din tidszone eks. Europe/Copenhagen (Denmark) "
+echo "Write your timezone aka. Europe/Copenhagen"
 
 read timez
 
@@ -48,34 +48,33 @@ ln -sf /usr/share/zoneinfo/$timez /etc/localtime
 
 #locale gen
 
-echo "da_DK.UTF-8 UTF-8" >> /etc/locale.gen
-echo "da_DK ISO-8859-1" >> /etc/locale.gen
+echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen
+echo "en_US ISO-8859-1" >> /etc/locale.gen
 
 # run locale-gen
 locale-gen
 
 #set language in locale.conf
-echo "LANG=da_DK.UTF-8" > /etc/locale.conf
+echo "LANG=en_US.UTF-8" > /etc/locale.conf
 
 #set keymap 
 #KEYMAP=de-latin1
-echo "KEYMAP=dk" > /etc/vconsole.conf
-echo "setxkbmap dk" >> /etc/vconsole.conf
+echo "KEYMAP=en_US" > /etc/vconsole.conf
 
 # set location in reflector
-reflector --protocol https --country 'Denmark,Germany'
+reflector --protocol https --country 'USA'
 
 # enable parralel download in pacman.conf
 sed -i 's/#ParallelDownloads/ParallelDownloads/g' /etc/pacman.conf
 
 
-# install pakker
+# install pakkages
 pacman -Sy 
 pacman -S networkmanager pulseaudio pavucontrol sudo
 
 
 #set hostname > 
-echo Skriv Hostname?
+echo Enter Hostname?
 read hostname
 
 echo ${hostname} > /etc/hostname
@@ -99,7 +98,7 @@ grub-mkconfig -o /boot/grub/grub.cfg
 mkinitcpio -P
 
 # set username
-echo Indtast brugernavn til bruger
+echo Enter a Username for the user
 read user
 
 useradd -m -G wheel -s /bin/bash ${user}
