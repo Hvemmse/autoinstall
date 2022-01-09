@@ -1,22 +1,12 @@
 #!/bin/bash
 
+# installing some Programms.
 sudo pacman -Syu
-
-echo "Vil du installere xfce Desktop? (j/n)"
-read svar
-
-if [ $svar == 'j' ]
-then
 sudo pacman -S xorg xorg-server xterm lightdm-gtk-greeter lightdm xfce4 xfce4-goodies vlc nano firefox pavucontrol
-else
-#vil du teste Lightdm
-echo "Vil du starte lightdm? (j/n)"
-read var
-sudo systemctl enable lightdm
-if [ $var == 'j' ]
-then
-  sudo systemctl start lightdm
 
-fi
-fi
+#Testing Lightdm
+
+sudo systemctl enable lightdm
+sudo systemctl start lightdm
+
 cp /etc/xdg/xfce4/xinitrc /etc/X11/xinit/xinitrc    
