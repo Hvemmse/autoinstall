@@ -1,4 +1,4 @@
-# archinstalldanish
+# Autoinstall
 
 Install script from the Arch Wiki for install on a pc with bios and Uefi boot in danish language.
 
@@ -12,11 +12,11 @@ for the right keyboard setup
 
 to install git and update pacman mirrorlist
 
-<code>git clone https://github.com/Hvemmse/archinstalldanish</code>
+<code>git clone https://github.com/Hvemmse/autoinstall</code>
 
 To get the files from the project.
 
-<code>cd archinstalldanish</code>
+<code>cd autoinstall/code>
 <code>sh starthere</code>
 After the script is done are you in the arch-chainroot run this code in the shell
 
