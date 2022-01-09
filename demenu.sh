@@ -1,7 +1,7 @@
 #!/bin/bash
 # 
 
-PS3='Vælg Desktop enviroment: '
+PS3='Choice your Desktop Enviroment: '
 options=("Cinnamon" "Kde" "Gnome" "Qtile" "Xfce4" "Afslut")
 select opt in "${options[@]}"
 do
@@ -31,9 +31,9 @@ do
             ./xfce4
 			break
             ;;       
-        "Afslut")
+        "Exit")
             break
             ;;
-        *) echo "Dette er ikke en mulighed $REPLY";;
+        *) echo "This is not an Option $REPLY";;
     esac
 done
