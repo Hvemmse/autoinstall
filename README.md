@@ -16,7 +16,7 @@ to install git and update pacman mirrorlist
 
 To get the files from the project.
 
-<code>cd autoinstall/code>
+<code>cd autoinstall</code>
 <code>sh starthere</code>
 After the script is done are you in the arch-chainroot run this code in the shell
 
