@@ -10,6 +10,7 @@ echo Enter driveletter /dev/sdx as a for x or b for x
 read part
 
 #install grub
+echo Installing grub
 grub-install --target=i386-pc ${part}
 
 }
@@ -18,6 +19,7 @@ grub-install --target=i386-pc ${part}
 
 efi () {
 lsblk -d
+echo Installing efiboot
 pacman -S efibootmgr
 grub-install --target=x86_64-efi --efi-directory=boot/efi --bootloader-id=GRUB
 
@@ -33,7 +35,7 @@ bios
 fi
 
 #set localtime
-
+echo set localtime
 
 echo "Enter your timezone as a town?"
 read town
@@ -47,33 +49,40 @@ read timez
 ln -sf /usr/share/zoneinfo/$timez /etc/localtime
 
 #locale gen
-
+echo add Locale gen
 echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen
 echo "en_US ISO-8859-1" >> /etc/locale.gen
 
 # run locale-gen
+echo run locale-gen
 locale-gen
 
 #set language in locale.conf
+echo Set Language in locale.conf
 echo "LANG=en_US.UTF-8" > /etc/locale.conf
 
 #set keymap 
 #KEYMAP=de-latin1
+echo set keymap in vconsole
 echo "KEYMAP=en_US" > /etc/vconsole.conf
 
 # set location in reflector
+echo set loavation in reflector
 reflector --protocol https --country 'USA'
 
 # enable parralel download in pacman.conf
+echo Enable parralel download in pacman
 sed -i 's/#ParallelDownloads/ParallelDownloads/g' /etc/pacman.conf
 
 
-# install pakkages
+# install packages
+echo install packages
 pacman -Sy 
 pacman -S networkmanager pulseaudio pavucontrol sudo
 
 
-#set hostname > 
+#set hostname
+echo set Hostname
 echo Enter Hostname?
 read hostname
 
@@ -81,20 +90,24 @@ echo ${hostname} > /etc/hostname
 
 
 #create Hostfile
+echo create hostfile
 echo "127.0.0.1	localhost" > /etc/hosts
 echo "::1		localhost" >> /etc/hosts
 echo "127.0.1.1	$hostname.localdomain	$hostname" >> /etc/hosts
 
 
 # enable services
+echo Enable Services
 # systemctl enable lightdm
 systemctl enable NetworkManager
 # systemctl enable cups
 
 #mkgrub-config
+echo mkgrub-config
 grub-mkconfig -o /boot/grub/grub.cfg
 
 #config mkinitcpio -P
+echo config intiran
 mkinitcpio -P
 
 # set username
@@ -106,5 +119,6 @@ useradd -m -G wheel -s /bin/bash ${user}
 passwd ${user}
 
 sed -i 's/# %wheel/%wheel/g' /etc/sudoers
-#exit
-exit
+
+#demenu for select DE
+demenu.sh
