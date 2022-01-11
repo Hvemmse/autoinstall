@@ -1,8 +1,9 @@
 #!/bin/bash
 # 
 
+clear
 PS3='Choice your Desktop Enviroment: '
-options=("Cinnamon" "Kde" "Gnome" "Qtile" "Xfce4" "Afslut")
+options=("Cinnamon" "Kde" "Gnome" "Qtile" "Xfce4" "Exit")
 select opt in "${options[@]}"
 do
     case $opt in
