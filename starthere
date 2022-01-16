@@ -1,7 +1,7 @@
 
 bios () {
 clear
-lsblk -d
+lsblk -do NAME,MODEL,SIZE
 
 echo enter the driveletter /dev/sdx as a for x or b for x
 
@@ -34,7 +34,7 @@ sudo mount ${part}2 /mnt/boot
 
 efi () {
 clear 
-lsblk -d
+lsblk -do NAME,MODEL,SIZE
 
 echo enter the driveletter /dev/sdx as a for x or b for x
 
