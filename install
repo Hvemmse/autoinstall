@@ -4,7 +4,7 @@ echo "Choice root Password."
 passwd
 
 bios () {
-lsblk -d
+lsblk -do NAME,MODEL,SIZE
 echo Enter driveletter /dev/sdx as a for x or b for x
 
 read part
@@ -18,7 +18,8 @@ grub-install --target=i386-pc ${part}
 
 
 efi () {
-lsblk -d
+lsblk -do NAME,MODEL,SIZE
+
 echo Installing efiboot
 pacman -S efibootmgr
 grub-install --target=x86_64-efi --efi-directory=boot/efi --bootloader-id=GRUB
