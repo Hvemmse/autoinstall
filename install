@@ -43,11 +43,15 @@ read town
 
 timedatectl list-timezones | grep $town
 
-echo "Write your timezone aka. Europe/Copenhagen"
+echo "if it is coorect use y to set it to $town"
+read answer
 
-read timez
-
-ln -sf /usr/share/zoneinfo/$timez /etc/localtime
+if [ $answer = y ]
+ln -sf /usr/share/zoneinfo/$town /etc/localtime
+else
+echo "run the install script again."
+break
+fi
 
 #locale gen
 echo add Locale gen
