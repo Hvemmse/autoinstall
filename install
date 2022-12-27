@@ -43,10 +43,11 @@ read town
 
 timedatectl list-timezones | grep $town
 
-echo "if it is coorect use y to set it to $town"
+echo "if it is correct use y to set it to $town"
 read answer
 
 if [ $answer = y ]
+then
 ln -sf /usr/share/zoneinfo/$town /etc/localtime
 else
 echo "run the install script again."
