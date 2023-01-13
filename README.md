@@ -26,6 +26,45 @@ Type at password for root accound and after the script is done, exit and reboot 
 
 enjoy a Arch linux enviroment with Cinnamon, xfce, gnome, kde or qtile
 
-Download arch isoc from here 
+Download arch iso from here 
 
 https://archlinux.org/download/
+
+Update 2023 as a new option therw are 2 new versions. fullautoinstall.sh and autoinstall.sh
+
+This Script are a form for autoinstall with this parametre. 
+
+RootPW:	arch
+default user: arch
+userPw: arch
+
+Default install /dev/sda
+
+Hostname: archlinuxvm
+
+bootloader uefi or bios GTP but grub
+
+use.
+
+<code>chmod +x fullautoinstall.sh</code>
+<code>./fullautoinstall.sh</code>
+
+<code>chmod +x autoinstall.sh</code>
+<code>./fullautoinstall.sh</code>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
