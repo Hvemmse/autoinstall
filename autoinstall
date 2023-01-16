@@ -14,7 +14,7 @@ part="/dev/sda"
 
 #install grub
 echo Installing grub
-grub-install --target=i386-pc ${part}
+grub-install --target=i386-pc /dev/sda
 
 }
 
