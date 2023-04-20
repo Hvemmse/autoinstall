@@ -1,3 +1,4 @@
-pacman -S - < packages.x86_64
+pacman -Sy cinnamon firefox gnome-terminal xorg xorg-server lightdm lightdm-gtk-greeter livewallpaper
+# pacman -S - < packages.x86_64
 systemctl enable lightdm
 locale-gen
