@@ -74,7 +74,7 @@ sed -i 's/#ParallelDownloads/ParallelDownloads/g' /etc/pacman.conf
 
 sudo cp /root/autoinstall/* /mnt
 # sudo cp /root/autoinstall/install /mnt
-sudo pacstrap /mnt base linux linux-firmware nemo grub nano reflector
+sudo pacstrap /mnt base linux linux-firmware git nemo grub nano reflector
 
 sudo pacman -Sy
 #gen fstab
