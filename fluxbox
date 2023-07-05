@@ -1,0 +1,13 @@
+#!/bin/bash
+
+# installing some Programms.
+sudo pacman -Syu
+sudo pacman -S xorg xorg-server xterm lightdm-gtk-greeter lightdm fluxbox vlc nano firefox pavucontrol feh
+
+#Testing Lightdm
+
+sudo systemctl enable lightdm
+sudo systemctl start lightdm
+fluxbox-generate_menu
+
+cp /etc/xdg/xfce4/xinitrc /etc/X11/xinit/xinitrc    
