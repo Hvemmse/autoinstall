@@ -3,7 +3,7 @@
 
 clear
 PS3='Choice your Desktop Enviroment: '
-options=("Cinnamon" "Kde" "Gnome" "Qtile" "Xfce4" "Exit")
+options=("Cinnamon" "Kde" "Gnome" "Qtile" "Xfce4" "Fluxbox" "Exit")
 select opt in "${options[@]}"
 do
     case $opt in
@@ -27,12 +27,18 @@ do
             ./qtile
             break
             ;;
-        "Xfce4")
+	"Xfce4")
             echo "xfce"
             ./xfce4
 			break
             ;;       
-        "Exit")
+         "Fluxbox")
+            echo "fluxbox"
+            chmod +x fluxbox
+	    ./fluxbox
+			break
+            ;;
+	"Exit")
             break
             ;;
         *) echo "This is not an Option $REPLY";;
