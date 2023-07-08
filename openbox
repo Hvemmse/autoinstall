@@ -9,8 +9,11 @@ sudo pacman -S xorg xorg-server xterm lightdm-gtk-greeter lightdm openbox obconf
 sudo systemctl enable lightdm
 sudo systemctl start lightdm
 
+git clone https://aur.archlinux.org/obtheme.git
+sudo mv obtheme /usr/share/themes
+
 echo "feh /usr/share/bagground/ &" > /etc/xdg/openbox/autostart
-echo "flatpak run com.valvesoftware.Steam" > /etc/xdg/openbox/autostart
+echo "flatpak run com.valvesoftware.Steam &" > /etc/xdg/openbox/autostart
 mkdir -p /home/arch/.config/openbox
 cp -a /etc/xdg/openbox /home/arch/.config
 
