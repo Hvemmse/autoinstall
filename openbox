@@ -13,8 +13,8 @@ git clone https://aur.archlinux.org/obtheme.git
 sudo mv obtheme /usr/share/themes
 
 su arch
-echo "~/.fehbg &" > /etc/xdg/openbox/autostart
-echo "flatpak run com.valvesoftware.Steam &" > /etc/xdg/openbox/autostart
+sudo echo "~/.fehbg &" > /etc/xdg/openbox/autostart
+sudo echo "flatpak run com.valvesoftware.Steam &" > /etc/xdg/openbox/autostart
 
 mkdir -p /home/arch/.config/openbox
 cp -a /etc/xdg/openbox /home/arch/.config
