@@ -19,6 +19,8 @@ sudo echo "flatpak run com.valvesoftware.Steam &" > /etc/xdg/openbox/autostart
 mkdir -p /home/arch/.config/openbox
 cp -a /etc/xdg/openbox /home/arch/.config
 
+su -
+
 flatpak install flathub com.valvesoftware.Steam
     
 mmaker -vf openbox3
