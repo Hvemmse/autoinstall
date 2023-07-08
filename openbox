@@ -12,16 +12,15 @@ sudo systemctl start lightdm
 git clone https://aur.archlinux.org/obtheme.git
 sudo mv obtheme /usr/share/themes
 
+flatpak install flathub com.valvesoftware.Steam
+    
+mmaker -vf openbox3
+
+feh --bg-scale /usr/share/backgrounds/archlinux/archbtw.png
+
 su arch
 sudo echo "~/.fehbg &" > /etc/xdg/openbox/autostart
 sudo echo "flatpak run com.valvesoftware.Steam &" > /etc/xdg/openbox/autostart
 
 mkdir -p /home/arch/.config/openbox
 cp -a /etc/xdg/openbox /home/arch/.config
-
-su -
-
-flatpak install flathub com.valvesoftware.Steam
-    
-mmaker -vf openbox3
-feh --bg-scale /usr/share/backgrounds/archlinux/archbtw.png
