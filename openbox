@@ -2,7 +2,7 @@
 
 # installing some Programms.
 sudo pacman -Syu
-sudo pacman -S xorg xorg-server xterm lightdm-gtk-greeter lightdm openbox obconf menumaker  vlc nano flatpak firefox pavucontrol feh archlinux-wallpaper
+sudo pacman -S xorg xorg-server xterm lightdm-gtk-greeter lightdm openbox obconf menumaker  vlc nano flatpak firefox pavucontrol feh archlinux-wallpaper git
 
 #Testing Lightdm
 
@@ -12,11 +12,14 @@ sudo systemctl start lightdm
 git clone https://aur.archlinux.org/obtheme.git
 sudo mv obtheme /usr/share/themes
 
-echo "feh /usr/share/bagground/ &" > /etc/xdg/openbox/autostart
+su arch
+echo "~/.fehbg &" > /etc/xdg/openbox/autostart
 echo "flatpak run com.valvesoftware.Steam &" > /etc/xdg/openbox/autostart
+
 mkdir -p /home/arch/.config/openbox
 cp -a /etc/xdg/openbox /home/arch/.config
 
 flatpak install flathub com.valvesoftware.Steam
     
 mmaker -vf openbox3
+feh --bg-scale /usr/share/backgrounds/archlinux/archbtw.png
