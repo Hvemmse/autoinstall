@@ -2,13 +2,15 @@
 
 # installing some Programms.
 sudo pacman -Syu
-sudo pacman -S xorg xorg-server xterm lightdm-gtk-greeter lightdm openbox obconf menumaker  vlc nano flatpak firefox pavucontrol feh
+sudo pacman -S xorg xorg-server xterm lightdm-gtk-greeter lightdm openbox obconf menumaker  vlc nano flatpak firefox pavucontrol feh archlinux-wallpaper
 
 #Testing Lightdm
 
 sudo systemctl enable lightdm
 sudo systemctl start lightdm
 
+echo "feh /usr/share/bagground/ &" > /etc/xdg/openbox/autostart
+echo "flatpak run com.valvesoftware.Steam" > /etc/xdg/openbox/autostart
 mkdir -p /home/arch/.config/openbox
 cp -a /etc/xdg/openbox /home/arch/.config
 
