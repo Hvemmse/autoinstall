@@ -83,9 +83,9 @@ reflector --protocol https --country 'DE'
 # enable parralel download in pacman.conf
 echo Enable parralel download in pacman
 sed -i 's/#ParallelDownloads/ParallelDownloads/g' /etc/pacman.conf
-#enable Multilib in pacman.con
-sed -i 's/#[multilib]/[multilib]/g' /etc/pacman.conf
-sed -i 's/#Include = /etc/pacman.d/mirrorlist/Include = /etc/pacman.d/mirrorlist/g' /etc/pacman.conf
+# Enable Multilib in pacman.conf
+sed -i 's/^#\[multilib\]$/[multilib]/' /etc/pacman.conf
+sed -i 's/^#Include = \/etc\/pacman.d\/mirrorlist$/Include = \/etc\/pacman.d\/mirrorlist/' /etc/pacman.conf
 
 # install packages
 echo install packages
