@@ -16,13 +16,13 @@ sudo mv obtheme /usr/share/themes
 echo "Do you want to install Steam <Y/N>"
 read var
 
-if [ "$var" = "-z" ] || [ "$var" = "y" ] || [ "$var" = "Y" ]
+if [[ "$var" = "-z" ] || [ "$var" = "y" ] || [ "$var" = "Y" ]]
 then
-   sudo pacman -S steam
+   sudo pacman -S steam ttf-liberation vulkan-icd-loader
 else
    # Code to execute if the condition is false
    # You can replace "pass" with the desired code to be executed.
-   pass
+   echo ""
 fi
 
 
