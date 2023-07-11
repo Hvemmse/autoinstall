@@ -76,16 +76,16 @@ echo "LANG=en_US.UTF-8" > /etc/locale.conf
 echo set keymap in vconsole
 echo "KEYMAP=en_US" > /etc/vconsole.conf
 
-# set location in reflector
-echo set loavation in reflector
-reflector --protocol https --country 'DE'
-
 # enable parralel download in pacman.conf
 echo Enable parralel download in pacman
 sed -i 's/#ParallelDownloads/ParallelDownloads/g' /etc/pacman.conf
 # Enable Multilib in pacman.conf
 sed -i 's/^#\[multilib\]$/[multilib]/' /etc/pacman.conf
 sed -i 's/^#Include = \/etc\/pacman.d\/mirrorlist$/Include = \/etc\/pacman.d\/mirrorlist/' /etc/pacman.conf
+
+# set location in reflector
+echo set loavation in reflector
+reflector --protocol https --country 'DE'
 
 # install packages
 echo install packages
