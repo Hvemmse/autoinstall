@@ -28,7 +28,7 @@ fi
 
 su arch
 sudo echo "~/.fehbg &" > /etc/xdg/openbox/autostart
-sudo echo "flatpak run com.valvesoftware.Steam &" > /etc/xdg/openbox/autostart
+sudo echo "steam &" > /etc/xdg/openbox/autostart
 
 feh --bg-scale /usr/share/backgrounds/archlinux/archbtw.png
 mmaker -vf openbox3
