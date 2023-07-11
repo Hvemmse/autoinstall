@@ -18,10 +18,9 @@ read var
 
 if [ "$var" = "N" ];
 then
-   sudo pacman -S steam ttf-liberation vulkan-icd-loader
+   echo $var
 else
-   # Code to execute if the condition is false
-   # You can replace "pass" with the desired code to be executed.
+   sudo pacman -S steam ttf-liberation vulkan-icd-loader   
    echo $var
 fi
 
