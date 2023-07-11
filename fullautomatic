@@ -1,8 +1,8 @@
 # This is a automatic install for arch linux
 
 ### all variables are set. part/harddisk = sda
-This file i in Beta. it is not complete en maybe not working.
-kernel="base linux linux-firmware" 
+#This file i in Beta. it is not complete en maybe not working.
+#kernel="base linux linux-firmware" 
 
 ###
 
