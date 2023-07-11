@@ -2,7 +2,7 @@
 
 # installing some Programms.
 sudo pacman -Syu
-sudo pacman -S xorg xorg-server xterm lightdm-gtk-greeter lightdm openbox obconf menumaker  vlc nano flatpak firefox pavucontrol feh archlinux-wallpaper git
+sudo pacman -S xorg xorg-server xterm lightdm-gtk-greeter lightdm openbox obconf menumaker  vlc nano firefox pavucontrol feh archlinux-wallpaper git
 
 #Testing Lightdm
 
@@ -18,7 +18,7 @@ read var
 
 if [ "$var" = "-z" ] || [ "$var" = "y" ] || [ "$var" = "Y" ]
 then
-   flatpak install flathub com.valvesoftware.Steam
+   sudo pacman -S steam
 else
    # Code to execute if the condition is false
    # You can replace "pass" with the desired code to be executed.
