@@ -12,16 +12,27 @@ sudo systemctl start lightdm
 git clone https://aur.archlinux.org/obtheme.git
 sudo mv obtheme /usr/share/themes
 
-flatpak install flathub com.valvesoftware.Steam
-    
-mmaker -vf openbox3
 
-feh --bg-scale /usr/share/backgrounds/archlinux/archbtw.png
+echo "Do you want to install Steam <Y/N>"
+read var
+
+if [ "$var" = "-z" ] || [ "$var" = "y" ] || [ "$var" = "Y" ]
+then
+   flatpak install flathub com.valvesoftware.Steam
+else
+   # Code to execute if the condition is false
+   # You can replace "pass" with the desired code to be executed.
+   pass
+fi
+
+
 
 su arch
 sudo echo "~/.fehbg &" > /etc/xdg/openbox/autostart
 sudo echo "flatpak run com.valvesoftware.Steam &" > /etc/xdg/openbox/autostart
 
+feh --bg-scale /usr/share/backgrounds/archlinux/archbtw.png
+mmaker -vf openbox3
 mkdir -p /home/arch/.config/openbox
 cp -a /etc/xdg/openbox /home/arch/.config
 exit
