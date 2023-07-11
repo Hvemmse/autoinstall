@@ -87,8 +87,7 @@ sed -i 's/#ParallelDownloads/ParallelDownloads/g' /etc/pacman.conf
 
 # install packages
 echo install packages
-pacman -Sy 
-pacman -S networkmanager pulseaudio pavucontrol sudo
+pacman -Sy --noconfirm networkmanager pulseaudio pavucontrol sudo git
 
 
 #set hostname
