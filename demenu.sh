@@ -43,7 +43,13 @@ do
             chmod +x openbox
 	    ./openbox
 			break
-            ;;"Exit")
+            ;;
+            "Lxqt")
+            echo "Lxqt"
+            chmod +x lxqt
+	    ./lxqt
+			break
+	    ;;"Exit")
             break
             ;;
         *) echo "This is not an Option $REPLY";;
