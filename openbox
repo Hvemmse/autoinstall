@@ -12,7 +12,7 @@ sudo systemctl start lightdm
 git clone https://aur.archlinux.org/obtheme.git
 sudo mv obtheme /usr/share/themes
 
-
+###
 echo "Do you want to install Steam <Y/N>"
 read var
 
@@ -23,7 +23,7 @@ else
    sudo pacman -S steam ttf-liberation vulkan-icd-loader   
    echo $var
 fi
-
+###
 
 
 su arch
