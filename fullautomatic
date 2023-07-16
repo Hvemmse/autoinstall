@@ -82,8 +82,8 @@ fi
 #enable paralelldownloads in pacman.conf
 sed -i 's/#ParallelDownloads/ParallelDownloads/g' /etc/pacman.conf
 #enable Multilib in pacman.con
-sed -i 's/#[multilib]/[multilib]/g' /etc/pacman.conf
-sed -i 's/#Include = /etc/pacman.d/mirrorlist/Include = /etc/pacman.d/mirrorlist/g' /etc/pacman.conf
+#sed -i 's/#[multilib]/[multilib]/g' /etc/pacman.conf
+#sed -i 's/#Include = /etc/pacman.d/mirrorlist/Include = /etc/pacman.d/mirrorlist/g' /etc/pacman.conf
 
 
 sudo cp /root/autoinstall/* /mnt
