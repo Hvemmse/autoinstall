@@ -9,4 +9,4 @@ sudo pacman -S xorg xorg-server xterm lightdm-gtk-greeter lightdm lxqt breeze-ic
 sudo systemctl enable lightdm
 sudo systemctl start lightdm
 
-cp /etc/xdg/lxqt/xinitrc /etc/X11/xinit/xinitrc 
+#cp /etc/xdg/lxqt/xinitrc /etc/X11/xinit/xinitrc 
