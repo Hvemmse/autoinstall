@@ -81,7 +81,7 @@ echo Enable parralel download in pacman
 sed -i 's/#ParallelDownloads/ParallelDownloads/g' /etc/pacman.conf
 # Enable Multilib in pacman.conf
 echo "[multilib]" >> /etc/pacman.conf
-echoe "Include = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
+echo "Include = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
 
 # set location in reflector
 echo set loavation in reflector
