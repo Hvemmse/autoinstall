@@ -36,9 +36,9 @@ else
     exit 1
 fi
 
-# Partition and format the disk
+# Partition and format the disk using MBR
 echo "Partitioning and formatting the disk..."
-parted $DISK --script mklabel gpt
+parted $DISK --script mklabel msdos
 parted $DISK --script mkpart primary ext4 1MiB 100%
 mkfs.ext4 "${DISK}1"
 mount "${DISK}1" /mnt
