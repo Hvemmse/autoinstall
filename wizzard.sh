@@ -1,5 +1,3 @@
-wizzard
-
 #!/bin/bash
 
 # Check if whiptail is installed
@@ -40,8 +38,8 @@ fi
 
 # Partition and format the disk
 echo "Partitioning and formatting the disk..."
-parted $DISK mklabel gpt
-parted $DISK mkpart primary ext4 1MiB 100%
+parted $DISK --script mklabel gpt
+parted $DISK --script mkpart primary ext4 1MiB 100%
 mkfs.ext4 "${DISK}1"
 mount "${DISK}1" /mnt
 
@@ -83,10 +81,18 @@ echo "$USERNAME:$PASSWORD" | chpasswd
 # Allow wheel group to use sudo
 echo "%wheel ALL=(ALL) ALL" >> /etc/sudoers
 
-# Install bootloader
+# Install and configure GRUB bootloader
 pacman -S --noconfirm grub
-grub-install --target=i386-pc --recheck $DISK
+grub-install --target=i386-pc $DISK
 grub-mkconfig -o /boot/grub/grub.cfg
 EOF
+
+# Check if GRUB configuration was successful
+if [ $? -eq 0 ]; then
+    echo "GRUB installation and configuration successful."
+else
+    echo "GRUB installation failed."
+    exit 1
+fi
 
 echo "Installation complete! Please reboot."
