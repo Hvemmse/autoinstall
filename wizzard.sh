@@ -43,9 +43,9 @@ parted $DISK --script mkpart primary ext4 1MiB 100%
 mkfs.ext4 "${DISK}1"
 mount "${DISK}1" /mnt
 
-# Install base system with sudo package
+# Install base system with sudo and NetworkManager packages
 echo "Installing base system with pacstrap..."
-pacstrap /mnt base linux linux-firmware sudo
+pacstrap /mnt base linux linux-firmware sudo networkmanager
 
 # Generate fstab
 genfstab -U /mnt >> /mnt/etc/fstab
@@ -63,6 +63,8 @@ hwclock --systohc
 echo "en_US.UTF-8 UTF-8" > /etc/locale.gen
 locale-gen
 echo "LANG=en_US.UTF-8" > /etc/locale.conf
+echo "LC_COLLATE=C" >> /etc/locale.conf
+echo "LC_TIME=C" >> /etc/locale.conf
 
 # Set hostname
 echo "archlinux" > /etc/hostname
@@ -88,6 +90,9 @@ echo "%wheel ALL=(ALL) ALL" >> /etc/sudoers
 pacman -S --noconfirm grub
 grub-install --target=i386-pc $DISK
 grub-mkconfig -o /boot/grub/grub.cfg
+
+# Enable NetworkManager
+systemctl enable NetworkManager
 EOF
 
 # Check if GRUB configuration was successful
