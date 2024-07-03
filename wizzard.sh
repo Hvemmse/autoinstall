@@ -50,6 +50,9 @@ pacstrap /mnt base linux linux-firmware
 # Generate fstab
 genfstab -U /mnt >> /mnt/etc/fstab
 
+# Copy resolv.conf for network configuration in chroot
+cp /etc/resolv.conf /mnt/etc/resolv.conf
+
 # Chroot into the new system to configure it
 arch-chroot /mnt /bin/bash <<EOF
 # Set the timezone
