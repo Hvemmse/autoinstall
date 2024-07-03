@@ -43,9 +43,9 @@ parted $DISK --script mkpart primary ext4 1MiB 100%
 mkfs.ext4 "${DISK}1"
 mount "${DISK}1" /mnt
 
-# Install base system
+# Install base system with sudo package
 echo "Installing base system with pacstrap..."
-pacstrap /mnt base linux linux-firmware
+pacstrap /mnt base linux linux-firmware sudo
 
 # Generate fstab
 genfstab -U /mnt >> /mnt/etc/fstab
