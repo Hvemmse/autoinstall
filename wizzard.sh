@@ -1,106 +1,110 @@
 #!/bin/bash
 
-# Check if whiptail is installed
-if ! command -v whiptail &> /dev/null; then
-    echo "whiptail is not installed. Please install it and run the script again."
+# Funktion til at hente og vise drevvalg
+choose_drive() {
+    drives=$(lsblk -o NAME,SIZE,FSTYPE,MOUNTPOINT -nr)
+    menu_items=()
+    while read -r line; do
+        name=$(echo $line | awk '{print $1}')
+        size=$(echo $line | awk '{print $2}')
+        fstype=$(echo $line | awk '{print $3}')
+        mountpoint=$(echo $line | awk '{print $4}')
+        menu_items+=("$name" "$size $fstype $mountpoint")
+    done <<< "$drives"
+    selected_drive=$(whiptail --title "Drev liste" --menu "Vælg et drev til installation:" 20 78 10 "${menu_items[@]}" 3>&1 1>&2 2>&3)
+    if [ $? -eq 0 ]; then
+        echo "$selected_drive"
+    else
+        echo "Ingen drev valgt." >&2
+        exit 1
+    fi
+}
+
+# Indhent brugernavn
+username=$(whiptail --inputbox "Indtast dit ønskede brugernavn:" 8 39 --title "Brugernavn" 3>&1 1>&2 2>&3)
+if [ $? -ne 0 ]; da så vil echo "Brugernavn blev ikke angivet." >&2
     exit 1
 fi
 
-# Get username
-USERNAME=$(whiptail --inputbox "Please enter your username:" 8 39 --title "Username Input" 3>&1 1>&2 2>&3)
-
-# Get password
-PASSWORD=$(whiptail --passwordbox "Please enter your password:" 8 39 --title "Password Input" 3>&1 1>&2 2>&3)
-
-# Select disk
-DISK=$(whiptail --radiolist "Please select the disk to use:" 15 50 4 \
-"/dev/sda" "Disk 1" ON \
-"/dev/sdb" "Disk 2" OFF \
-"/dev/sdc" "Disk 3" OFF \
-"/dev/sdd" "Disk 4" OFF 3>&1 1>&2 2>&3)
-
-# Select timezone
-TIMEZONE=$(whiptail --menu "Please select your timezone:" 15 50 4 \
-"UTC" "Coordinated Universal Time" \
-"Europe/Copenhagen" "Copenhagen" \
-"America/New_York" "New York" \
-"Asia/Tokyo" "Tokyo" 3>&1 1>&2 2>&3)
-
-# Confirmation
-whiptail --title "Confirmation" --yesno "Please confirm the following details:\n\nUsername: $USERNAME\nPassword: (hidden)\nDisk: $DISK\nTimezone: $TIMEZONE\n\nIs this correct?" 15 60
-
-if [ $? -eq 0 ]; then
-    echo "Starting installation..."
-else
-    echo "User cancelled the setup."
+# Indhent root password
+root_password=$(whiptail --passwordbox "Indtast root password:" 8 39 --title "Root Password" 3>&1 1>&2 2>&3)
+if [ $? -ne 0 ]; da så vil echo "Root password blev ikke angivet." >&2
     exit 1
 fi
 
-# Partition and format the disk using MBR
-echo "Partitioning and formatting the disk..."
-parted $DISK --script mklabel msdos
-parted $DISK --script mkpart primary ext4 1MiB 100%
-mkfs.ext4 "${DISK}1"
-mount "${DISK}1" /mnt
+# Indhent password
+password=$(whiptail --passwordbox "Indtast dit ønskede password:" 8 39 --title "Password" 3>&1 1>&2 2>&3)
+if [ $? -ne 0 ]; da så vil echo "Password blev ikke angivet." >&2
+    exit 1
+fi
 
-# Install base system with sudo and NetworkManager packages
-echo "Installing base system with pacstrap..."
-pacstrap /mnt base linux linux-firmware sudo networkmanager
+# Vælg drev til installation
+drive=$(choose_drive)
 
-# Generate fstab
+# Indhent sprog
+language=$(whiptail --inputbox "Indtast ønsket sprog (f.eks. da_DK.UTF-8):" 8 39 --title "Sprog" 3>&1 1>&2 2>&3)
+if [ $? -ne 0 ]; da så vil echo "Sprog blev ikke angivet." >&2
+    exit 1
+fi
+
+# Indhent tidszone
+timezone=$(whiptail --inputbox "Indtast ønsket tidszone (f.eks. Europe/Copenhagen):" 8 39 --title "Tidszone" 3>&1 1>&2 2>&3)
+if [ $? -ne 0 ]; da så vil echo "Tidszone blev ikke angivet." >&2
+    exit 1
+fi
+
+# Formater og monter det valgte drev
+mkfs.ext4 /dev/"$drive"
+mount /dev/"$drive" /mnt
+
+# Installer basispakkerne
+pacstrap /mnt base linux linux-firmware
+
+# Generer fstab
 genfstab -U /mnt >> /mnt/etc/fstab
 
-# Copy resolv.conf for network configuration in chroot
-cp /etc/resolv.conf /mnt/etc/resolv.conf
-
-# Chroot into the new system to configure it
+# Chroot ind i det nye system og konfigurer
 arch-chroot /mnt /bin/bash <<EOF
-# Set the timezone
-ln -sf /usr/share/zoneinfo/$TIMEZONE /etc/localtime
+# Sæt tidszonen
+ln -sf /usr/share/zoneinfo/$timezone /etc/localtime
 hwclock --systohc
 
-# Set locale
-echo "en_US.UTF-8 UTF-8" > /etc/locale.gen
+# Lokaliseringsindstillinger
+echo "LANG=$language" > /etc/locale.conf
+echo "$language UTF-8" >> /etc/locale.gen
 locale-gen
-echo "LANG=en_US.UTF-8" > /etc/locale.conf
-echo "LC_COLLATE=C" >> /etc/locale.conf
-echo "LC_TIME=C" >> /etc/locale.conf
 
-# Set hostname
+# Sæt hostname
 echo "archlinux" > /etc/hostname
 
-# Add hosts entries
-cat <<HOSTS > /etc/hosts
+# Hosts file
+cat <<EOL > /etc/hosts
 127.0.0.1   localhost
 ::1         localhost
 127.0.1.1   archlinux.localdomain archlinux
-HOSTS
+EOL
 
-# Set root password
-echo "root:rootpassword" | chpasswd
+# Opsæt root password
+echo "root:$root_password" | chpasswd
 
-# Create user
-useradd -m -G wheel -s /bin/bash $USERNAME
-echo "$USERNAME:$PASSWORD" | chpasswd
+# Opret brugeren og opsæt password
+useradd -m -G wheel $username
+echo "$username:$password" | chpasswd
 
-# Allow wheel group to use sudo
-echo "%wheel ALL=(ALL) ALL" >> /etc/sudoers
+# Giv sudo rettigheder
+sed -i 's/^# %wheel ALL=(ALL:ALL) ALL/%wheel ALL=(ALL:ALL) ALL/' /etc/sudoers
 
-# Install and configure GRUB bootloader
-pacman -S --noconfirm grub
-grub-install --target=i386-pc $DISK
+# Installer og konfigurer GRUB
+pacman --noconfirm -S grub
+grub-install --target=i386-pc /dev/"$drive"
 grub-mkconfig -o /boot/grub/grub.cfg
 
-# Enable NetworkManager
+# Installer NetworkManager
+pacman --noconfirm -S networkmanager
 systemctl enable NetworkManager
 EOF
 
-# Check if GRUB configuration was successful
-if [ $? -eq 0 ]; then
-    echo "GRUB installation and configuration successful."
-else
-    echo "GRUB installation failed."
-    exit 1
-fi
+# Afmontér drevet
+umount -R /mnt
 
-echo "Installation complete! Please reboot."
+echo "Installation færdig. Du kan nu genstarte systemet."
