@@ -22,19 +22,22 @@ choose_drive() {
 
 # Indhent brugernavn
 username=$(whiptail --inputbox "Indtast dit ønskede brugernavn:" 8 39 --title "Brugernavn" 3>&1 1>&2 2>&3)
-if [ $? -ne 0 ]; da så vil echo "Brugernavn blev ikke angivet." >&2
+if [ $? -ne 0 ]; then
+    echo "Brugernavn blev ikke angivet." >&2
     exit 1
 fi
 
 # Indhent root password
 root_password=$(whiptail --passwordbox "Indtast root password:" 8 39 --title "Root Password" 3>&1 1>&2 2>&3)
-if [ $? -ne 0 ]; da så vil echo "Root password blev ikke angivet." >&2
+if [ $? -ne 0 ]; then
+    echo "Root password blev ikke angivet." >&2
     exit 1
 fi
 
 # Indhent password
 password=$(whiptail --passwordbox "Indtast dit ønskede password:" 8 39 --title "Password" 3>&1 1>&2 2>&3)
-if [ $? -ne 0 ]; da så vil echo "Password blev ikke angivet." >&2
+if [ $? -ne 0 ]; then
+    echo "Password blev ikke angivet." >&2
     exit 1
 fi
 
@@ -43,13 +46,15 @@ drive=$(choose_drive)
 
 # Indhent sprog
 language=$(whiptail --inputbox "Indtast ønsket sprog (f.eks. da_DK.UTF-8):" 8 39 --title "Sprog" 3>&1 1>&2 2>&3)
-if [ $? -ne 0 ]; da så vil echo "Sprog blev ikke angivet." >&2
+if [ $? -ne 0 ]; then
+    echo "Sprog blev ikke angivet." >&2
     exit 1
 fi
 
 # Indhent tidszone
 timezone=$(whiptail --inputbox "Indtast ønsket tidszone (f.eks. Europe/Copenhagen):" 8 39 --title "Tidszone" 3>&1 1>&2 2>&3)
-if [ $? -ne 0 ]; da så vil echo "Tidszone blev ikke angivet." >&2
+if [ $? -ne 0 ]; then
+    echo "Tidszone blev ikke angivet." >&2
     exit 1
 fi
 
