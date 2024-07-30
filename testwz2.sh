@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Kontrollér om nødvendige værktøjer er installeret
-for cmd in whiptail curl jq lsblk pacman reflector; do
+for cmd in whiptail curl lsblk pacman reflector; do
     if ! command -v "$cmd" &> /dev/null; then
         echo "Fejl: $cmd er ikke installeret. Installer det ved hjælp af din pakkehåndterer."
         exit 1
