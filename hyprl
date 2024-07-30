@@ -1,0 +1,4 @@
+#/bin/bash
+
+sudo pacman -Sy hyprland hyprpaper hyprlock hypridle hyprcursor lightdm lightdm-gtk-greeter xorg xorg-xinit NetworkManager nano neofetch htop bat 
+ 
