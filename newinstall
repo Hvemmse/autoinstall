@@ -1,0 +1,98 @@
+#!/bin/bash
+
+echo "Choose root password."
+passwd
+
+bios() {
+    lsblk -do NAME,MODEL,SIZE
+    echo "Enter drive letter (example: a → /dev/sda):"
+    read part
+    part="/dev/sd${part}"
+
+    echo "Installing GRUB (BIOS mode) on $part"
+    grub-install --target=i386-pc "$part"
+}
+
+efi() {
+    lsblk -do NAME,MODEL,SIZE
+    echo "Installing GRUB (UEFI mode)"
+    pacman -Sy --noconfirm efibootmgr
+    grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=GRUB
+}
+
+# Detect BIOS/UEFI
+if [ -d /sys/firmware/efi/efivars ]; then
+    efi
+else
+    bios
+fi
+
+echo "Set timezone"
+echo "Enter your timezone (example: Europe/Copenhagen):"
+read timezone
+
+if timedatectl list-timezones | grep -q "$timezone"; then
+    ln -sf "/usr/share/zoneinfo/$timezone" /etc/localtime
+    hwclock --systohc
+else
+    echo "Invalid timezone. Exiting."
+    exit 1
+fi
+
+echo "Add locale to locale.gen"
+echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen
+echo "en_US ISO-8859-1" >> /etc/locale.gen
+
+echo "Run locale-gen"
+locale-gen
+
+echo "Set language"
+echo "LANG=en_US.UTF-8" > /etc/locale.conf
+
+echo "Set keymap"
+echo "KEYMAP=en_US" > /etc/vconsole.conf
+
+echo "Configure reflector (USA)"
+pacman -Sy --noconfirm reflector
+reflector --protocol https --country "USA" --latest 20 --sort rate --save /etc/pacman.d/mirrorlist
+
+echo "Enable parallel downloads in pacman.conf"
+sed -i 's/#ParallelDownloads/ParallelDownloads/' /etc/pacman.conf
+
+echo "Install base packages"
+pacman -Sy --noconfirm networkmanager pulseaudio pavucontrol sudo
+
+echo "Set hostname"
+echo "Enter hostname:"
+read hostname
+echo "$hostname" > /etc/hostname
+
+echo "Create /etc/hosts"
+cat <<EOF >/etc/hosts
+127.0.0.1   localhost
+::1         localhost
+127.0.1.1   ${hostname}.localdomain ${hostname}
+EOF
+
+echo "Enable services"
+systemctl enable NetworkManager
+
+echo "Generate GRUB config"
+grub-mkconfig -o /boot/grub/grub.cfg
+
+echo "Generate initramfs"
+mkinitcpio -P
+
+echo "Create user"
+echo "Enter username:"
+read user
+useradd -m -G wheel -s /bin/bash "$user"
+passwd "$user"
+
+echo "Enable sudo for wheel group"
+sed -i 's/^# %wheel ALL=(ALL:ALL) ALL/%wheel ALL=(ALL:ALL) ALL/' /etc/sudoers
+
+echo "Run DE selection menu"
+./demenu.sh
+
+echo "Installation complete!"
